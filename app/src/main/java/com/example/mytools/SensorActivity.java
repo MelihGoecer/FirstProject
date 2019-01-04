@@ -35,6 +35,7 @@ public class SensorActivity extends AppCompatActivity {
             R.drawable.icon_thermometer,
             R.drawable.icon_hygrometer
     };
+    /*hello*/
 
     /**
      * The {@link androidx.viewpager.widget.PagerAdapter} that will provide

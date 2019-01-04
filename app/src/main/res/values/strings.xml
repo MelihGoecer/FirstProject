@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">MyTools</string>
+    <string name="calculator">Calculator</string>
+    <string name="compass">Compass</string>
+    <string name="list">List</string>
+
+    //Calculator
+    <string name="button_0">0</string>
+    <string name="button_1">1</string>
+    <string name="button_2">2</string>
+    <string name="button_3">3</string>
+    <string name="button_4">4</string>
+    <string name="button_5">5</string>
+    <string name="button_6">6</string>
+    <string name="button_7">7</string>
+    <string name="button_8">8</string>
+    <string name="button_9">9</string>
+    <string name="C">C</string>
+    <string name="CE">CE</string>
+    <string name="addition">+</string>
+    <string name="subtraction">-</string>
+    <string name="multiplication">\u00D7</string>
+    <string name="division">\u00F7</string>
+    <string name="point">.</string>
+    <string name="equal">=</string>
+    <string name="open_bracket">(</string>
+    <string name="close_bracket">)</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="squareRoot">\u221A</string>
+    <string name="log">log</string>
+    <string name="naturalLog">ln</string>
+    <string name="shift">Shift</string>
+    <string name="mod">Mod</string>
+    <string name="potencyY">x\u02B8</string>
+    <string name="potency2">x\u00B2</string>
+    <string name="delete">\u232B</string>
+    <string name="sqrt3">\u221B</string>
+    <string name="round">\u2248</string>
+    <string name="rad">Rad</string>
+    <string name="deg">Deg</string>
+
+    //Sensors
+    <string name="title_activity_sensor">Sensors</string>
+    <string name="tab_text_1">Compass</string>
+    <string name="tab_text_2">Thermometer</string>
+    <string name="tab_text_3">Hygrometer</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="degree_sign">\u2103</string>
+    <string name="degree_format">%1$s%2$s</string>
+
+    <string name="humidity_unit">\u0025</string>
+    <string name="humidity_format">%1$s%2$s</string>
+
+
+</resources>

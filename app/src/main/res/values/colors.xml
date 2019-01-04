@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="Blue">#3F51B5</color>
+    <color name="DarkBlue">#303F9F</color>
+    <color name="AccentPurple">#FF4081</color>
+
+    <color name="background">#878787</color>
+    <color name="shiftback">#c7c7c7</color>
+    <color name="CalculatorToolbarTextColor">#0b0b0b</color>
+    <color name="mainActivityToolbarTextColor">#ffffff</color>
+    <color name="buttonshiftpressed">#6e6e6e</color>
+    <color name="tabsBackground">#00594e</color>
+
+</resources>

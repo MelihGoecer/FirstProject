@@ -1,41 +1,42 @@
 package com.example.mytools;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
-
-import android.drm.DrmStore;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+
 public class SensorActivity extends AppCompatActivity {
+
+    private static final String TAG = "SensorActivity";
 
     final int[] ICONS = new int[]{
             R.drawable.icon_compass,
             R.drawable.icon_thermometer,
-            R.drawable.icon_hygrometer
+            R.drawable.icon_hygrometer,
+            R.drawable.icon_barometer,
+            R.drawable.icon_lightsensor
     };
-    /*hello*/
 
     /**
      * The {@link androidx.viewpager.widget.PagerAdapter} that will provide
@@ -68,13 +69,17 @@ public class SensorActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        final TabLayout tabLayout;
 
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(mViewPager);
+
         tabLayout.getTabAt(0).setIcon(ICONS[0]);
         tabLayout.getTabAt(1).setIcon(ICONS[1]);
         tabLayout.getTabAt(2).setIcon(ICONS[2]);
+        tabLayout.getTabAt(3).setIcon(ICONS[3]);
+        tabLayout.getTabAt(4).setIcon(ICONS[4]);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -85,6 +90,12 @@ public class SensorActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_sensor, menu);
         return true;
+    }
+
+    @Override
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        Log.d(TAG, "onAttachFragment: " );
+
     }
 
     @Override
@@ -158,6 +169,10 @@ public class SensorActivity extends AppCompatActivity {
                     return ThermometerFragment.newInstance("a", "b");
                 case 2:
                     return HygrometerFragment.newInstance("a", "b");
+                case 3:
+                    return BarometerFragment.newInstance("a", "b");
+                case 4:
+                    return LightSensorFragment.newInstance("a", "b");
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
 
@@ -165,10 +180,11 @@ public class SensorActivity extends AppCompatActivity {
 
         }
 
+
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 5 total pages.
+            return 5;
         }
 
         @Nullable
@@ -182,9 +198,19 @@ public class SensorActivity extends AppCompatActivity {
                     return getString(R.string.tab_text_2).toUpperCase(l);
                 case 2:
                     return getString(R.string.tab_text_3).toUpperCase(l);
+                case 3:
+                    return getString(R.string.tab_text_4).toUpperCase(l);
+                case 4:
+                    return getString(R.string.tab_text_5).toUpperCase(l);
             }
             return null;
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 }

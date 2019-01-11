@@ -33,8 +33,9 @@
         <activity
             android:name=".SensorActivity"
             android:label="@string/title_activity_sensor"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".StudentList"></activity>
     </application>
 
 </manifest>

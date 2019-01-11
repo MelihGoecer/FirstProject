@@ -4,6 +4,6 @@
     <item android:drawable="@drawable/icon_compass_needle_selected"
        android:state_selected="true" />
     <!-- unselected state (default) -->
-    <item android:drawable="@drawable/compass_needle_50" />
+    <item android:drawable="@drawable/compass_needle_100" />
 
 </selector>

@@ -18,18 +18,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-public class HygrometerFragment extends Fragment implements SensorEventListener {
+public class LightSensorFragment extends Fragment implements SensorEventListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String TAG = "HygrometerFragment";
+    private static final String TAG = "LightSensorFragment";
+
 
     private String mParam1;
     private String mParam2;
 
     private SensorManager sensorManager;
-    private Sensor mHumidity;
-    private TextView textViewHumidity;
+    private Sensor mIlluminance;
+    private TextView textViewIlluminance;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,26 +39,24 @@ public class HygrometerFragment extends Fragment implements SensorEventListener 
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        Log.d(TAG, "onCreate: ");
     }
 
-    public HygrometerFragment() {
+    public LightSensorFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sensor_hygrometer, container, false);
-        textViewHumidity = view.findViewById(R.id.text_humidity);
+        View view = inflater.inflate(R.layout.fragment_sensor_light, container, false);
+        textViewIlluminance = view.findViewById(R.id.text_illuminance);
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        mHumidity = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
-        Log.d(TAG, "onCreateView: ");
+        mIlluminance = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         return view;
     }
 
-    public static HygrometerFragment newInstance(String param1, String param2) {
-        HygrometerFragment fragment = new HygrometerFragment();
+    public static LightSensorFragment newInstance(String param1, String param2) {
+        LightSensorFragment fragment = new LightSensorFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,10 +66,10 @@ public class HygrometerFragment extends Fragment implements SensorEventListener 
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        float relativeHumidity = sensorEvent.values[0];
+        float illuminance = sensorEvent.values[0];
 
-        float relativeHumidityRounded = (float) (Math.round(relativeHumidity * Math.pow(10.0, 2)) / Math.pow(10.0, 2));
-        textViewHumidity.setText(getResources().getString(R.string.humidity_format, String.valueOf(relativeHumidityRounded), getResources().getString(R.string.humidity_unit)));
+        float illuminanceRounded = (float) (Math.round(illuminance * Math.pow(10.0, 2)) / Math.pow(10.0, 2));
+        textViewIlluminance.setText(getResources().getString(R.string.illuminance_format, String.valueOf(illuminanceRounded), getResources().getString(R.string.illuminance_unit)));
     }
 
     @Override
@@ -81,40 +80,25 @@ public class HygrometerFragment extends Fragment implements SensorEventListener 
     @Override
     public void onStart() {
         super.onStart();
-            if(!sensorManager.registerListener(this, mHumidity, SensorManager.SENSOR_DELAY_UI)){
-                AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                        .setTitle("Sensor unavailable")
-                        .setMessage("Your device has not a built-in " + TAG.replace("Fragment", " ").trim().toUpperCase())
-                        .setPositiveButton("continue", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        }).show();
-
-            }
-        Log.d(TAG, "onStart: ");
+        sensorManager.registerListener(this, mIlluminance, SensorManager.SENSOR_DELAY_UI);
     }
-
 
     @Override
     public void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, mHumidity, SensorManager.SENSOR_DELAY_UI);
-        Log.d(TAG, "onResume: ");
+        sensorManager.registerListener(this, mIlluminance, SensorManager.SENSOR_DELAY_UI);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
-        Log.d(TAG, "onPause: ");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         sensorManager.unregisterListener(this);
-        Log.d(TAG, "onDetach: ");
     }
 }

@@ -18,10 +18,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,30:27"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/compass" />
+        app:layout_constraintVertical_bias="0.211"
+        app:srcCompat="@drawable/transparentcompass" />
 
     <TextView
         android:id="@+id/text_compass"

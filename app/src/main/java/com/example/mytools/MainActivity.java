@@ -40,16 +40,17 @@ AnimationDrawable animationDrawable;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-       if(hasFocus)
-                  animationDrawable = (AnimationDrawable) layout.getBackground();
-                  animationDrawable.setEnterFadeDuration(1000);
-                  animationDrawable.setExitFadeDuration(5000);
-                  animationDrawable.start();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        animationDrawable = (AnimationDrawable) layout.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
+
         Log.d("UI", "onStart");
     }
 
